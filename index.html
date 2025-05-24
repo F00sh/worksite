@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Worksite</title>
+
+    <!-- Favicon & compiled Tailwind CSS -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-gray-900 text-white">
+    <!-- ──────────  Nav  ────────── -->
+    <nav id="navbar" class="bg-gray-800 flex items-center justify-between h-16 md:h-20 w-full px-6 md:px-20 sticky top-0 z-10">
+      <h1 class="text-lg font-bold taos:-translate-x-full taos:opacity-0 translate-x-0 opacity-100 taos:duration-500 taos:ease-out">
+        LOGO
+      </h1>
+      <ul class="hidden sm:flex space-x-6 md:space-x-10 uppercase tracking-wide text-sm md:text-base">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="uppercase text-sm md:text-base">en/hr</button>
+    </nav>
+
+    <!-- ──────────  Hero  ────────── -->
+    <header id="hero" class="w-full flex flex-col items-center justify-center bg-center bg-cover bg-no-repeat bg-fixed" style="background-image:url('/src/table.png')">
+      <h1 class="my-50 text-center leading-none text-[10rem] lg:text-[20rem] tracking-tight font-extrabold">
+        VILI
+      </h1>
+    </header>
+
+    <!-- ──────────  About  ────────── -->
+    <section id="about" class="w-full flex flex-col items-center justify-center min-h-screen text-black bg-center bg-cover bg-no-repeat bg-fixed" style="background-image:url('/src/table.png')">
+      <div class="w-full h-screen flex flex-col items-center justify-center bg-white/70 backdrop-blur-xs p-6 sm:p-8 md:p-12">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-center">About</h2>
+        <p class="w-full max-w-2xl text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </section>
+
+    <!-- ──────────  Work heading (scroll‑in)  ────────── -->
+    <section class="w-full flex flex-col items-center justify-center text-white bg-center bg-cover bg-no-repeat bg-fixed py-60" style="background-image:url('/src/printer.png')">
+      <h1 class="text-[3rem] sm:text-[6rem] lg:text-[8rem] font-extrabold px-4 text-center">
+        Design Portfolio
+      </h1>
+    </section>
+
+    <!-- ──────────  Work content  ────────── -->
+    <section id="work" class="w-full h-screen flex flex-col items-center justify-center text-white bg-center bg-cover bg-no-repeat bg-fixed" style="background-image:url('/src/printer.png')">
+      <div class="w-full h-full flex flex-col items-center justify-center bg-white/70 backdrop-blur-xs p-6 sm:p-8 md:p-12">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-center">Work</h2>
+        <p class="w-full max-w-2xl text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </section>
+
+    <!-- ──────────  Wireframe heading  ────────── -->
+    <section class="w-full flex flex-col items-center justify-center text-white bg-center bg-cover bg-no-repeat bg-fixed py-60" style="background-image:url('/src/wireframe.png')">
+      <h1 class="text-[3rem] sm:text-[6rem] lg:text-[8rem] font-extrabold px-4 text-center">
+        WEBSITE
+      </h1>
+    </section>
+
+    <!-- ──────────  Contact  ────────── -->
+    <section id="contact" class="w-full flex flex-col items-center justify-center text-white bg-center bg-cover bg-no-repeat bg-fixed" style="background-image:url('/src/wireframe.png')">
+      <div class="w-full h-full flex flex-col items-center justify-center bg-white/70 backdrop-blur-xs p-6 sm:p-8 md:p-12 py-60">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-center">Contact</h2>
+        <p class="w-full max-w-2xl text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </section>
+
+    <!-- ──────────  Footer  ────────── -->
+    <footer class="w-full h-full flex flex-col items-center justify-center py-16 bg-gray-900 text-center">
+      <p>&copy; 2025&nbsp;Worksite</p>
+    </footer>
+
+    <!-- TAOS (Tiny Animation On Scroll) -->
+    <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
+  </body>
+</html>
