@@ -16,9 +16,14 @@
     <div data-include="/partials/footer.html"></div>
 
     
+    
+    <!-- Load i18n first (standalone) -->
+    <script type="module" src="/scripts/i18n"></script>
+
+    <!-- Then your main script -->
     <script type="module">
-      import { loadPartials } from '/scripts/includes.js';
-      import { initSkillsCarousel } from '/scripts/skills-carousel.js';
+      import { loadPartials } from '/scripts/includes.ts';
+      import { initSkillsCarousel } from '/scripts/skills-carousel.ts';
 
       loadPartials().then(() => {
         initSkillsCarousel();
@@ -43,6 +48,5 @@
       });
     </script>
 
-    <script type="module" src="/scripts/i18n.js"></script>
   </body>
 </html>
