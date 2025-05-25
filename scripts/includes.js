@@ -14,23 +14,26 @@ export async function loadPartials() {
 
   for (const host of hosts) {
     const html = await fetch(host.dataset.include).then(r => r.text());
-    host.outerHTML = html;
 
-    // Run any inline scripts after injection
-    document.querySelectorAll('script[data-run]').forEach(old => {
+    host.innerHTML = html;
+
+    // re-parse any scripts marked for execution
+    host.querySelectorAll('script[data-run]').forEach(old => {
       const s = document.createElement('script');
-      s.type = old.type || 'text/javascript';
+      s.type = old.type || 'text/javascript'; // works for 'module' too
       s.textContent = old.textContent;
       document.body.appendChild(s);
       old.remove();
     });
   }
 
-  // Merge all inline i18n data blocks into globalDict
+  // gather inline i18n payloads from inserted partials
   document.querySelectorAll('script[data-i18n]').forEach(tag => {
     const local = JSON.parse(tag.textContent.trim());
     Object.assign(globalDict.en, local.en || {});
     Object.assign(globalDict.hr, local.hr || {});
     tag.remove();
   });
+
+  document.dispatchEvent(new Event('partials:loaded'));
 }

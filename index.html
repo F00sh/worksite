@@ -15,15 +15,14 @@
     <div data-include="/partials/contact.html"></div>
     <div data-include="/partials/footer.html"></div>
 
+    
     <script type="module">
       import { loadPartials } from '/scripts/includes.js';
       import { initSkillsCarousel } from '/scripts/skills-carousel.js';
 
-      // Load all partials, then init features
       loadPartials().then(() => {
         initSkillsCarousel();
 
-        // Language switch buttons (wait for them to exist)
         setTimeout(() => {
           const btnEn = document.getElementById('btn-en');
           const btnHr = document.getElementById('btn-hr');
@@ -33,14 +32,12 @@
               localStorage.setItem('lang', 'en');
               document.dispatchEvent(new Event('lang:change'));
             });
-
             btnHr.addEventListener('click', () => {
               localStorage.setItem('lang', 'hr');
               document.dispatchEvent(new Event('lang:change'));
             });
           }
 
-          // Trigger initial language set
           document.dispatchEvent(new Event('partials:loaded'));
         }, 0);
       });
