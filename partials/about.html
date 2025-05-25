@@ -1,12 +1,10 @@
-<!-- /partials/about.html -->
-<section id="about" class="w-full bg-center bg-cover py-16"
+<section id="about" class="w-full bg-center bg-cover py-16 text-white"
          style="background-image:url('/src/table.png')">
   <div class="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,260px)_1fr] gap-12
-              px-6 md:px-10 text-black">
+              px-6 md:px-10 text-white">
     <div class="flex flex-col">
       <h2 data-i18n="about.title"
           class="text-5xl font-extrabold tracking-tight mb-8">ABOUT ME</h2>
-
       <ul class="space-y-6 text-2xl font-medium tracking-wider">
         <li>GRAPHIC DESIGN</li>
         <li>3D MODELING</li>
@@ -23,4 +21,24 @@
       <p data-i18n="about.p4"></p>
     </div>
   </div>
+
+  <!-- Local translation payload --------------------------------------- -->
+  <script type="application/json" data-i18n>
+  {
+    "en": {
+      "about.title":  "About Me",
+      "about.p1":     "As a versatile product designer, I specialise in game design, animation, web design and more.",
+      "about.p2":     "With a bachelor’s degree in product design and a solid foundation in art and design, I deliver high-quality services in product & graphic design, 3D modelling, animation, web design, and UI/UX.",
+      "about.p3":     "I’m proficient with Adobe Creative Suite, Blender, HTML & CSS, Figma, Revit and AutoCAD, and enjoy collaborating with clients who value creativity and precision.",
+      "about.p4":     "Based in Croatia, I’m ready to bring your vision to life with innovative and effective design solutions."
+    },
+    "hr": {
+      "about.title":  "O meni",
+      "about.p1":     "Kao svestran produkt dizajner specijaliziran sam za game dizajn, animaciju, web dizajn i još mnogo toga.",
+      "about.p2":     "S diplomom produkt dizajna i čvrstim temeljem u umjetnosti i dizajnu pružam vrhunske usluge produkt i grafičkog dizajna, 3D modeliranja, animacije, web dizajna te UI/UX-a.",
+      "about.p3":     "Vješto koristim Adobe Creative Suite, Blender, HTML & CSS, Figmu, Revit i AutoCAD te rado surađujem s klijentima koji cijene kreativnost i preciznost.",
+      "about.p4":     "Sa sjedištem u Hrvatskoj spreman sam vašu viziju pretvoriti u inovativna i učinkovita dizajnerska rješenja."
+    }
+  }
+  </script>
 </section>
