@@ -1,7 +1,9 @@
 export function initSkillsCarousel() {
   // find the <img id="project-slide"> that was injected from skills.html
-  const img = document.querySelector('#projects #project-slide');
-  if (!img) return;                      // partial not yet in DOM
+
+  const img = document.querySelector('#projects #project-slide') as HTMLImageElement | null;
+  if (!img) return;
+  // partial not yet in DOM
 
   const slides = [
     'https://picsum.photos/900/600?random=1',
