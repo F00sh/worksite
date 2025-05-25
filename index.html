@@ -6,39 +6,43 @@
     <title>Worksite</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-<body>
-  <div data-include="/partials/navbar.html"></div>
-  <div data-include="/partials/header.html"></div>
-  <div data-include="/partials/about.html"></div>
-  <div data-include="/partials/skills.html"></div>
-  <div data-include="/partials/contact.html"></div>
-  <div data-include="/partials/footer.html"></div>
+  <body>
+    <!-- Page Sections (loaded via includes.js) -->
+    <div data-include="/partials/navbar.html"></div>
+    <div data-include="/partials/header.html"></div>
+    <div data-include="/partials/about.html"></div>
+    <div data-include="/partials/skills.html"></div>
+    <div data-include="/partials/contact.html"></div>
+    <div data-include="/partials/footer.html"></div>
 
-<script type="module">
-  import { loadPartials, setLang } from '/scripts/includes.js';
-  import { initSkillsCarousel }    from '/scripts/skills-carousel.js';
+    
+    <script type="module">
+      import { loadPartials } from '/scripts/includes.js';
+      import { initSkillsCarousel } from '/scripts/skills-carousel.js';
 
-  loadPartials().then(() => {
-    // ---- DOM is now complete  ----
-    initSkillsCarousel();                 // kick off the carousel
+      loadPartials().then(() => {
+        initSkillsCarousel();
 
-    // wire up language buttons that live inside navbar.html
-    const btnEn = document.getElementById('btn-en');
-    const btnHr = document.getElementById('btn-hr');
+        setTimeout(() => {
+          const btnEn = document.getElementById('btn-en');
+          const btnHr = document.getElementById('btn-hr');
 
-    btnEn.addEventListener('click', () => {
-      localStorage.setItem('lang', 'en');
-      setLang('en');
-    });
-    btnHr.addEventListener('click', () => {
-      localStorage.setItem('lang', 'hr');
-      setLang('hr');
-    });
+          if (btnEn && btnHr) {
+            btnEn.addEventListener('click', () => {
+              localStorage.setItem('lang', 'en');
+              document.dispatchEvent(new Event('lang:change'));
+            });
+            btnHr.addEventListener('click', () => {
+              localStorage.setItem('lang', 'hr');
+              document.dispatchEvent(new Event('lang:change'));
+            });
+          }
 
-    // initial translation
-    setLang(localStorage.getItem('lang') || 'en');
-  });
-</script>
+          document.dispatchEvent(new Event('partials:loaded'));
+        }, 0);
+      });
+    </script>
 
-</body>
+    <script type="module" src="/scripts/i18n.js"></script>
+  </body>
 </html>

@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Pixelify+Sans:wght@400..700&display=swap');
 @import "tailwindcss";
 @import "tailwindcss-animated";
-@config "./tailwind.config.js"; 
 
-:root{
+:root {
    font-family: "Pixelify Sans", sans-serif;
 }
