@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
 <body>
+  <div data-include="/partials/navbar.html"></div>
   <div data-include="/partials/header.html"></div>
   <div data-include="/partials/about.html"></div>
   <div data-include="/partials/skills.html"></div>
@@ -17,24 +18,27 @@
   import { loadPartials, setLang } from '/scripts/includes.js';
   import { initSkillsCarousel }    from '/scripts/skills-carousel.js';
 
-  // ① load all <div data-include=...> fragments
   loadPartials().then(() => {
-    // ② now the DOM contains skills.html → run the carousel
-    initSkillsCarousel();
+    // ---- DOM is now complete  ----
+    initSkillsCarousel();                 // kick off the carousel
 
-    // ③ translate after everything is in place
+    // wire up language buttons that live inside navbar.html
+    const btnEn = document.getElementById('btn-en');
+    const btnHr = document.getElementById('btn-hr');
+
+    btnEn.addEventListener('click', () => {
+      localStorage.setItem('lang', 'en');
+      setLang('en');
+    });
+    btnHr.addEventListener('click', () => {
+      localStorage.setItem('lang', 'hr');
+      setLang('hr');
+    });
+
+    // initial translation
     setLang(localStorage.getItem('lang') || 'en');
   });
-
-  // ④ wire up language buttons
-  document.getElementById('btn-en').onclick = () => {
-    localStorage.setItem('lang', 'en');
-    setLang('en');
-  };
-  document.getElementById('btn-hr').onclick = () => {
-    localStorage.setItem('lang', 'hr');
-    setLang('hr');
-  };
 </script>
+
 </body>
 </html>

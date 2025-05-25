@@ -1,0 +1,32 @@
+<!-- /partials/navbar.html -->
+<nav id="navbar" class="bg-gray-800 flex items-center justify-between h-16 md:h-20 w-full px-6 md:px-20 sticky top-0 z-20">
+  <!-- logo as top‑link -------------------------------------------------- -->
+  <a href="#hero" class="text-lg font-bold tracking-wider">LOGO</a>
+
+  <!-- nav links -------------------------------------------------------- -->
+  <ul class="hidden sm:flex space-x-6 md:space-x-10 uppercase tracking-wide text-sm md:text-base">
+    <li><a data-i18n="nav.about"   href="#about">About</a></li>
+    <li><a data-i18n="nav.work"    href="#projects">Work</a></li>
+    <li><a data-i18n="nav.contact" href="#contact">Contact</a></li>
+  </ul>
+
+  <!-- language switcher ------------------------------------------------ -->
+  <div class="flex space-x-2">
+    <button id="btn-en" class="lang-btn uppercase text-sm md:text-base px-2 py-1">EN</button>
+    <button id="btn-hr" class="lang-btn uppercase text-sm md:text-base px-2 py-1">HR</button>
+  </div>
+
+  <!-- local i18n payload ---------------------------------------------- -->
+  <script type="application/json" data-i18n>{
+    "en": {
+      "nav.about"  : "About",
+      "nav.work"   : "Work",
+      "nav.contact": "Contact"
+    },
+    "hr": {
+      "nav.about"  : "O meni",
+      "nav.work"   : "Rad",
+      "nav.contact": "Kontakt"
+    }
+  }</script>
+</nav>
