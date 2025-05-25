@@ -26,14 +26,16 @@
     const btnEn = document.getElementById('btn-en');
     const btnHr = document.getElementById('btn-hr');
 
-    btnEn.addEventListener('click', () => {
-      localStorage.setItem('lang', 'en');
-      setLang('en');
-    });
-    btnHr.addEventListener('click', () => {
-      localStorage.setItem('lang', 'hr');
-      setLang('hr');
-    });
+    if (btnEn && btnHr) {
+      btnEn.addEventListener('click', () => {
+        localStorage.setItem('lang', 'en');
+        setLang('en');
+      });
+      btnHr.addEventListener('click', () => {
+        localStorage.setItem('lang', 'hr');
+        setLang('hr');
+      });
+    }
 
     // initial translation
     setLang(localStorage.getItem('lang') || 'en');
