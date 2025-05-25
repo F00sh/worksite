@@ -25,27 +25,14 @@
     <header id="hero" class="w-full flex flex-col items-center justify-center bg-center bg-cover bg-no-repeat bg-fixed" style="background-image:url('/src/table.png')">
       <h1 class="my-[50px] text-center leading-none text-[10rem] lg:text-[20rem] tracking-tight font-extrabold">VILI</h1>
     </header>
+    <!-- ──────────  Soldo  ────────── -->
+    <div>
+      <h1 id="counter" class="text-center">0</h1>
+    </div>
+
 
     <!-- ──────────  About  ────────── -->
-    <section id="about" class="w-full flex flex-col items-center justify-center min-h-screen text-black bg-center bg-cover bg-no-repeat bg-fixed" style="background-image:url('/src/table.png')">
-      <div class="max-w-4xl w-full bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-14 shadow-2xl">
-        <h2 data-i18n="about.title" class="text-4xl font-extrabold mb-6 text-center">About</h2>
-        <p data-i18n="about.summary" class="text-lg leading-relaxed mb-8 text-center"></p>
-        <h3 data-i18n="about.expHeading" class="text-2xl font-bold mb-4 text-emerald-700 text-center"></h3>
-        <ul class="space-y-3 text-sm md:text-base mx-auto max-w-xl list-disc list-inside">
-          <li data-i18n="about.exp1"></li>
-          <li data-i18n="about.exp2"></li>
-          <li data-i18n="about.exp3"></li>
-          <li data-i18n="about.exp4"></li>
-          <li data-i18n="about.exp5"></li>
-        </ul>
-        <h3 data-i18n="about.awardHeading" class="text-2xl font-bold mt-10 mb-4 text-emerald-700 text-center"></h3>
-        <ul class="space-y-3 text-sm md:text-base mx-auto max-w-xl list-disc list-inside">
-          <li data-i18n="about.award1"></li>
-          <li data-i18n="about.award2"></li>
-        </ul>
-      </div>
-    </section>
+  <div data-include="/partials/about.html"></div>  <!-- << here -->
 
     <!-- ──────────  Work heading  ────────── -->
     <section class="w-full flex flex-col items-center justify-center text-white bg-center bg-cover bg-no-repeat bg-fixed py-60" style="background-image:url('/src/printer.png')">
@@ -157,8 +144,18 @@
 
       <p>&copy; 2025&nbsp;Worksite</p>
     </footer>
-
+<script type="module">
+  const placeholders = document.querySelectorAll('[data-include]');
+  Promise.all([...placeholders].map(async el => {
+    const html = await fetch(el.dataset.include).then(r => r.text());
+    el.outerHTML = html;           // replace placeholder with fetched markup
+  })).then(() => {
+    document.dispatchEvent(new Event('partials:loaded')); // fire when ready
+  });
+</script>
     <!-- ──────────  Language switch logic  ────────── -->
+     <script src="/scripts/includes.js" type="module"></script>
+     <script src="/scripts/i18n.js"     type="module"></script>
      <script>
       (function () {
         const supportedLangs = ['en', 'hr'];
