@@ -1,0 +1,53 @@
+<!-- /partials/header.html -->
+<header id="hero" class="w-full bg-[#262626] text-white py-20">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6 md:px-10 items-center">
+
+    <!-- ─────── headline block ─────── -->
+    <div class="space-y-6 order-2 md:order-1">
+      <h1 class="leading-none font-extrabold text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem]">
+        <span data-i18n="header.h1">VILIPIĆ</span><br>
+        <span data-i18n="header.h2">DESIGN</span>
+      </h1>
+
+      <p class="uppercase tracking-widest text-lg sm:text-xl space-x-2">
+        <span data-i18n="header.tag1">Art</span> –
+        <span data-i18n="header.tag2">Design</span> –
+        <span data-i18n="header.tag3">Animation</span>
+      </p>
+      <p class="uppercase tracking-widest text-lg sm:text-xl" data-i18n="header.tag4">
+        From sketch to production
+      </p>
+
+      <a href="#contact"
+         class="inline-block bg-white text-black hover:bg-emerald-500 hover:text-white font-semibold uppercase tracking-widest px-8 py-3 mt-4"
+         data-i18n="header.btn">Contact</a>
+    </div>
+
+    <!-- ─────── logo image ─────── -->
+    <div class="order-1 md:order-2 flex justify-center md:justify-end">
+      <img src="/assets/logo.png" alt="logo" class="max-w-xs md:max-w-sm lg:max-w-md">
+    </div>
+  </div>
+
+  <!-- local i18n payload ---------------------------------------------- -->
+  <script type="application/json" data-i18n>{
+    "en": {
+      "header.h1"  : "VILIPIĆ",
+      "header.h2"  : "DESIGN",
+      "header.tag1": "Art",
+      "header.tag2": "Design",
+      "header.tag3": "Animation",
+      "header.tag4": "From sketch to production",
+      "header.btn" : "Contact"
+    },
+    "hr": {
+      "header.h1"  : "VILIPIĆ",
+      "header.h2"  : "DESIGN",
+      "header.tag1": "Arhitektura",
+      "header.tag2": "Dizajn",
+      "header.tag3": "Animacija",
+      "header.tag4": "Od skice do proizvodnje",
+      "header.btn" : "Kontakt"
+    }
+  }</script>
+</header>
