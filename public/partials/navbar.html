@@ -1,82 +1,76 @@
-<!-- /partials/navbar.html -->
-<nav id="navbar"
-     class="bg-gray-800 flex items-center justify-between h-16 md:h-20 w-full px-6 md:px-20
-            sticky top-0 z-20 text-white">
-  <!-- ─────── logo -------------------------------------------------- -->
-  <a href="#hero"
-     class="text-lg font-bold tracking-wider hover:text-red-400 transition-colors duration-300">
-    LOGO
-  </a>
+<!-- /partials/navbar.html – Alpine version (scoped wrapper) -->
 
-  <!-- ─────── desktop links ---------------------------------------- -->
-  <ul class="hidden sm:flex space-x-6 md:space-x-10 uppercase tracking-wide text-sm md:text-base">
-    <li class="hover:text-red-400 transition-colors duration-300"><a data-i18n="nav.about"   href="#about">About</a></li>
-    <li class="hover:text-red-400 transition-colors duration-300"><a data-i18n="nav.work"    href="#projects">Work</a></li>
-    <li class="hover:text-red-400 transition-colors duration-300"><a data-i18n="nav.contact" href="#contact">Contact</a></li>
-  </ul>
+<!--
+  Wrapper <header> carries the Alpine state so both the <nav> bar and the
+  off‑canvas mobile panel share the same "open / down / lastY" values.
+  Add x-cloak on the slide panel to prevent FOUC (flash of unstyled content).
+-->
+<header x-data="{
+          open:false,
+          down:false,
+          lastY:0,
+          handleScroll(){
+            const y = window.scrollY;
+            this.down = y > this.lastY && y > 100;
+            this.lastY = y;
+          }
+        }" @scroll.window="handleScroll" class="fixed inset-x-0 top-0 z-50">
 
-  <!-- ─────── desktop language buttons ----------------------------- -->
-  <div class="hidden sm:flex space-x-2">
-    <button id="btn-en" class="lang-btn uppercase text-sm md:text-base px-2 py-1 hover:text-red-400 transition-colors duration-300">EN</button>
-    <button id="btn-hr" class="lang-btn uppercase text-sm md:text-base px-2 py-1 hover:text-red-400 transition-colors duration-300">HR</button>
+  <!-- ─────── sticky bar ─────── -->
+  <nav id="navbar"
+       :class="down ? '-translate-y-full' : 'translate-y-0'"
+       class="bg-gray-800 text-white flex items-center justify-between h-16 md:h-20 px-6 md:px-20 transition-transform duration-300">
+
+    <!-- logo -->
+    <a href="#hero" class="text-lg font-bold tracking-wider hover:text-red-400 transition-colors duration-300">LOGO</a>
+
+    <!-- desktop links -->
+    <ul class="hidden sm:flex space-x-6 md:space-x-10 uppercase tracking-wide text-sm md:text-base">
+      <li class="hover:text-red-400 duration-300"><a data-i18n="nav.about"   href="#about">About</a></li>
+      <li class="hover:text-red-400 duration-300"><a data-i18n="nav.work"    href="#projects">Work</a></li>
+      <li class="hover:text-red-400 duration-300"><a data-i18n="nav.contact" href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- desktop language buttons -->
+    <div class="hidden sm:flex space-x-2" x-data>
+      <button @click="window.setLang('en')" class="uppercase text-sm md:text-base px-2 py-1 hover:text-red-400 duration-300">EN</button>
+      <button @click="window.setLang('hr')" class="uppercase text-sm md:text-base px-2 py-1 hover:text-red-400 duration-300">HR</button>
+    </div>
+
+    <!-- hamburger (mobile) -->
+    <button @click="open = !open" class="sm:hidden p-2 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2">
+        <path x-show="!open"  stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        <path x-show="open"   stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ─────── mobile slide panel ─────── -->
+  <div x-cloak x-show="open"
+       x-transition:enter="transition-transform duration-300"
+       x-transition:enter-start="translate-x-full"
+       x-transition:enter-end="translate-x-0"
+       x-transition:leave="transition-transform duration-300"
+       x-transition:leave-start="translate-x-0"
+       x-transition:leave-end="translate-x-full"
+       @click.away="open=false"
+       class="sm:hidden fixed top-16 inset-x-0 bg-gray-900/95 text-white flex flex-col items-center justify-center space-y-10 text-2xl uppercase tracking-wide z-40">
+    <a @click="open=false" data-i18n="nav.about"   class="hover:text-red-400" href="#about">About</a>
+    <a @click="open=false" data-i18n="nav.work"    class="hover:text-red-400" href="#projects">Work</a>
+    <a @click="open=false" data-i18n="nav.contact" class="hover:text-red-400" href="#contact">Contact</a>
+
+    <div class="flex space-x-6 pt-6">
+      <button @click="$dispatch('lang','en'); open=false" class="lang-btn uppercase px-4 py-2 hover:text-red-400">EN</button>
+      <button @click="$dispatch('lang','hr'); open=false" class="lang-btn uppercase px-4 py-2 hover:text-red-400">HR</button>
+    </div>
   </div>
+</header>
 
-  <!-- ─────── mobile hamburger ------------------------------------- -->
-  <button id="menu-toggle" class="sm:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
-    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path id="icon-hamburger" d="M3 6h18M3 12h18M3 18h18" />
-      <path id="icon-close" class="hidden" d="M6 6l12 12M6 18L18 6" />
-    </svg>
-  </button>
-</nav>
-
-<!-- ─────── mobile slide‑in panel ---------------------------------- -->
-<div id="mobile-menu"
-     class="fixed inset-0 bg-gray-900/95 text-white flex flex-col items-center justify-center
-            space-y-10 text-2xl uppercase tracking-wide transform translate-x-full
-            transition-transform duration-300 sm:hidden">
-  <a data-i18n="nav.about"   class="mobile-link hover:text-red-400" href="#about">About</a>
-  <a data-i18n="nav.work"    class="mobile-link hover:text-red-400" href="#projects">Work</a>
-  <a data-i18n="nav.contact" class="mobile-link hover:text-red-400" href="#contact">Contact</a>
-
-  <div class="flex space-x-6 pt-6">
-    <button id="m-btn-en" class="lang-btn uppercase px-4 py-2 hover:text-red-400">EN</button>
-    <button id="m-btn-hr" class="lang-btn uppercase px-4 py-2 hover:text-red-400">HR</button>
-  </div>
-</div>
-
-<!-- ─────── local i18n payload ------------------------------------- -->
-<script type="application/json" data-i18n>{
+<!-- local i18n keys -->
+<script type="application/json" data-i18n>
+{
   "en": { "nav.about":"About","nav.work":"Work","nav.contact":"Contact" },
   "hr": { "nav.about":"O meni","nav.work":"Rad","nav.contact":"Kontakt" }
-}</script>
-
-<!-- ─────── menu script -------------------------------------------- -->
-<script type="module">
-  // Ensure elements exist after DOM is parsed
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn   = document.getElementById('menu-toggle');
-    const panel = document.getElementById('mobile-menu');
-    const ham   = document.getElementById('icon-hamburger');
-    const close = document.getElementById('icon-close');
-
-    if (!btn || !panel) return; // safety guard
-
-    const toggleMenu = () => {
-      // Slide panel
-      panel.classList.toggle('translate-x-full');
-      // Swap icons
-      const isHidden = panel.classList.contains('translate-x-full');
-      ham.classList.toggle('hidden', !isHidden);
-      close.classList.toggle('hidden', isHidden);
-    };
-
-    btn.addEventListener('click', toggleMenu);
-    // Close menu on link or language change
-    panel.querySelectorAll('.mobile-link, .lang-btn').forEach(el =>
-      el.addEventListener('click', () => {
-        if (!panel.classList.contains('translate-x-full')) toggleMenu();
-      })
-    );
-  });
+}
 </script>

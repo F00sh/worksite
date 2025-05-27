@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Worksite</title>
     <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" src="/scripts/alpine-bootstrap.js"></script>
   </head>
   <body>
     <!-- Page Sections (loaded via includes.js) -->
@@ -18,8 +19,23 @@
     
     
     <!-- Load i18n first (standalone) -->
+     <script type="module" src="/scripts/alpine-bootstrap.js"></script>
     <script type="module" src="/scripts/i18n"></script>
+<script type="module">
+  import { loadPartials, setLang } from '/scripts/includes.ts';
+  import { initSkillsCarousel }    from '/scripts/skills-carousel.ts';
 
+  loadPartials().then(() => {
+    initSkillsCarousel();
+    setLang(localStorage.getItem('lang') || 'en');
+  });
+
+  /* optional: store lang dispatched by Alpine */
+  document.addEventListener('lang', (e) => {
+    localStorage.setItem('lang', e.detail);
+    setLang(e.detail);
+  });
+</script>
     <!-- Then your main script -->
     <script type="module">
       import { loadPartials } from '/scripts/includes.ts';
