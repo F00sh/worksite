@@ -1,33 +1,39 @@
-<!-- /partials/skills.html -->
-<section id="projects" class="w-full bg-center bg-cover py-16"
-         style="background-image:url('/assets/printer.png')">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,260px)_1fr] gap-12
-              px-6 md:px-10 text-white">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="work.head">My Projects</title>
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+</head>
+<body>
+  <!-- ─────── Projects section ─────── -->
+  <section id="projects" class="w-full bg-center bg-cover py-16" style="background-image:url('/assets/printer.png')">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,260px)_1fr] gap-12 px-6 md:px-10 text-white">
+      <!-- Left column -->
+      <div class="flex flex-col">
+        <h2 data-i18n="work.head" class="text-5xl font-extrabold tracking-tight mb-8">PROJECTS</h2>
 
-    <!-- ─────── left column ─────── -->
-    <div class="flex flex-col">
-      <h2 data-i18n="work.head" class="text-5xl font-extrabold tracking-tight mb-8">
-        PROJECTS
-      </h2>
-      <ul class="space-y-6 text-2xl font-medium tracking-wider">
-        <li data-i18n="work.soft1">ADOBE PACKAGE</li>
-        <li data-i18n="work.soft2">RHINOCEROS</li>
-        <li data-i18n="work.soft3">BLENDER</li>
-        <li data-i18n="work.soft4">SOLIDWORKS</li>
-        <li data-i18n="work.soft5">CODE</li>
-      </ul>
-    </div>
+        <ul class="space-y-6 text-2xl font-medium tracking-wider mb-8">
+          <li data-i18n="work.soft1">ADOBE PACKAGE</li>
+          <li data-i18n="work.soft2">RHINOCEROS</li>
+          <li data-i18n="work.soft3">BLENDER</li>
+          <li data-i18n="work.soft4">SOLIDWORKS</li>
+          <li data-i18n="work.soft5">CODE</li>
+        </ul>
 
-    <!-- ─────── right column (carousel) ─────── -->
-    <div class="relative overflow-hidden bg-black">
-      <img id="project-slide" src="https://picsum.photos/900/600?random=1" alt="project slide"
-           class="w-full h-full object-cover transition-opacity duration-700 opacity-100">
+        <!-- “More” button -->
+        <a href="pages/work.html" class="inline-block w-max px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl font-semibold tracking-wide transition-colors duration-200" data-i18n="work.more">MORE</a>
+      </div>
+
+      <!-- Right column (carousel) -->
+      <div class="relative overflow-hidden bg-black rounded-xl shadow-lg">
+        <img id="project-slide" src="https://picsum.photos/900/600?random=1" alt="project slide" class="w-full h-full object-cover transition-opacity duration-700 opacity-100">
+      </div>
     </div>
-  </div>
-<script type="module" data-run>
-  /* same setInterval code here */
-</script>
-  <!-- local i18n payload ------------------------------------------------ -->
+  </section>
+
+  <!-- ─────── i18n payload ─────── -->
   <script type="application/json" data-i18n>
   {
     "en": {
@@ -36,7 +42,8 @@
       "work.soft2": "Rhinoceros",
       "work.soft3": "Blender",
       "work.soft4": "SolidWorks",
-      "work.soft5": "Code"
+      "work.soft5": "Code",
+      "work.more" : "More"
     },
     "hr": {
       "work.head" : "Moji projekti",
@@ -44,12 +51,13 @@
       "work.soft2": "Rhinoceros",
       "work.soft3": "Blender",
       "work.soft4": "SolidWorks",
-      "work.soft5": "Kod"
+      "work.soft5": "Kod",
+      "work.more" : "Više"
     }
   }
   </script>
 
-  <!-- simple JS carousel (replace URLs later) --------------------------- -->
+  <!-- ─────── Carousel script ─────── -->
   <script type="module">
     const slides = [
       'https://picsum.photos/900/600?random=1',
@@ -57,8 +65,7 @@
       'https://picsum.photos/900/600?random=3',
       'https://picsum.photos/900/600?random=4'
     ];
-    const img = document.currentScript.closest('#projects')
-                  .querySelector('#project-slide');
+    const img = document.querySelector('#project-slide');
     let idx = 0;
     setInterval(() => {
       idx = (idx + 1) % slides.length;
@@ -69,4 +76,5 @@
       }, 400);
     }, 4000);
   </script>
-</section>
+</body>
+</html>
